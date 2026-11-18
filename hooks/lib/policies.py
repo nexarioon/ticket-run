@@ -20,6 +20,10 @@ _LIST_LINE = re.compile(r"^([a-z_]+):\s*\[(.*)\]\s*$")
 _KV_LINE = re.compile(r"^([a-z_]+):\s*(.*?)\s*$")
 
 
+def _strip_comment(value: str) -> str:
+    return value.split(" #", 1)[0].strip().strip("'\"")
+
+
 def _parse(text: str) -> Dict[str, Any]:
     out: Dict[str, Any] = {}
     for line in text.splitlines():
@@ -28,11 +32,13 @@ def _parse(text: str) -> Dict[str, Any]:
             continue
         m = _LIST_LINE.match(line)
         if m:
-            out[m.group(1)] = [v.strip().strip("'\"") for v in m.group(2).split(",") if v.strip()]
+            out[m.group(1)] = [
+                _strip_comment(v) for v in m.group(2).split(",") if v.strip()
+            ]
             continue
         m = _KV_LINE.match(line)
         if m:
-            out[m.group(1)] = m.group(2).strip().strip("'\"")
+            out[m.group(1)] = _strip_comment(m.group(2))
     return out
 
 

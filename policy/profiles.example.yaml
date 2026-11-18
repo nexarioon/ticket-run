@@ -1,0 +1,23 @@
+# Per-repo-class policy presets. Copy the fitting block into
+# <repo>/.ticket-workflow.yaml (or ~/.hermes/ticket-workflow.yaml for global).
+# Hook-relevant keys: language, skills, retention, test_globs_allow.
+
+profiles:
+  money:                     # lending, payments, accounting
+    language: en
+    runners: [vitest run, npx tsc --noEmit, npm run build]
+    retention: regression-permanent
+    test_globs_allow: [tests/regression/**]
+    baseline: compare against a worktree of the integration branch
+  api-contract:              # public/partner APIs, FastAPI & friends
+    language: en
+    runners: [pytest -q, black --check, flake8]
+    retention: regression-permanent
+    test_globs_allow: [tests/contract/**]
+    baseline: required before labelling any failure pre-existing
+  ui:                        # React/Vite frontends
+    language: en
+    runners: [npx vitest run, npx tsc -p tsconfig.json --noEmit, npm run build]
+    retention: regression-permanent
+    test_globs_allow: [tests/e2e/regression/**]
+    baseline: eslint warning count compared against the base ref
