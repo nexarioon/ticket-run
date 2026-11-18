@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# ticket-workflow-kit bootstrap: install with one command, no git and no npm.
+# ticket-run bootstrap: install with one command, no git and no npm.
 #
-#   curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-workflow-kit/main/bootstrap.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-run/main/bootstrap.sh | bash
 #   curl -fsSL .../bootstrap.sh | bash -s -- --tag v0.3.0            # pinned release
 #   curl -fsSL .../bootstrap.sh | bash -s -- --tag v0.3.0 --sha256 <hex>
 #
@@ -10,7 +10,7 @@
 # pass through, and removes the temp directory. Nothing else touches your machine.
 set -euo pipefail
 
-REPO="nexarioon/ticket-workflow-kit"
+REPO="nexarioon/ticket-run"
 TAG="main"
 SHA=""
 URL=""

@@ -22,7 +22,7 @@ def test_defaults_when_no_policy_exists(tmp_path, monkeypatch):
 
 def test_env_var_wins_over_repo_file(tmp_path, monkeypatch):
     repo = tmp_path / "repo"; repo.mkdir()
-    (repo / ".ticket-workflow.yaml").write_text("language: id\n")
+    (repo / ".ticket-run.yaml").write_text("language: id\n")
     env_pol = tmp_path / "env.yaml"; env_pol.write_text("language: en\nskills: [a, b]\n")
     monkeypatch.setenv("TICKET_POLICY", str(env_pol))
     monkeypatch.setenv("HOME", str(tmp_path))
@@ -32,7 +32,7 @@ def test_env_var_wins_over_repo_file(tmp_path, monkeypatch):
 
 def test_repo_file_used_when_no_env(tmp_path, monkeypatch):
     repo = tmp_path / "repo"; repo.mkdir()
-    (repo / ".ticket-workflow.yaml").write_text("language: id\ntest_globs_allow: [tests/regression/**]\n")
+    (repo / ".ticket-run.yaml").write_text("language: id\ntest_globs_allow: [tests/regression/**]\n")
     monkeypatch.delenv("TICKET_POLICY", raising=False)
     monkeypatch.setenv("HOME", str(tmp_path))
     pol = policies.load(str(repo))

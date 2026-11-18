@@ -1,7 +1,7 @@
 # One-line install (no npm, no git)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-workflow-kit/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-run/main/bootstrap.sh | bash
 ```
 
 What that does, in order:

@@ -44,5 +44,5 @@ jobs:
         run: |
           mkdir -p /tmp/h2 /tmp/t2
           TMPDIR=/tmp/t2 bash bootstrap.sh --url file:///tmp/pkg.tgz --home /tmp/h2 --yes
-          test -x /tmp/h2/agent-hooks/ticket-workflow-kit/ticket-rules.py
+          test -x /tmp/h2/agent-hooks/ticket-run/ticket-rules.py
           grep -q "tests-not-committed.py" /tmp/h2/config.yaml

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ticket-workflow-kit pre_tool_call hook: keep scaffolding tests out of git.
+"""ticket-run pre_tool_call hook: keep scaffolding tests out of git.
 
 Blocks the terminal tool call when one of its git commit/push segments would
 run in a repo whose working tree holds a NEW (untracked or staged-added) test

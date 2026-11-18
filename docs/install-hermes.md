@@ -1,7 +1,7 @@
 # Installing on Hermes
 
 ```bash
-git clone <this repo> && cd ticket-workflow-kit
+git clone <this repo> && cd ticket-run
 ./install.sh --yes                 # default profile (~/.hermes)
 ./install.sh --profile work --yes  # or a named profile (created if missing)
 hermes hooks doctor               # expect: scripts OK, not allowlisted yet

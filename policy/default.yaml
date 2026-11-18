@@ -1,5 +1,5 @@
-# ticket-workflow-kit default policy.
-# Copy to <repo>/.ticket-workflow.yaml or ~/.hermes/ticket-workflow.yaml to override.
+# ticket-run default policy.
+# Copy to <repo>/.ticket-run.yaml or ~/.hermes/ticket-run.yaml to override.
 language: en                       # message language: en | id
 skills: [vdd-workflow, coding-plan, clean-code]
 retention: regression-permanent     # regression-permanent | strict | keep-all

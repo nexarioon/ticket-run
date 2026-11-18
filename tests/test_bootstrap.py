@@ -68,7 +68,7 @@ def test_IT02_full_install_and_cleanup(tmp_path):
     tmpd.mkdir()
     rc, out = run(["--url", f"file://{tgz}", "--home", str(home), "--yes"], tmpd)
     assert rc == 0, out
-    assert (home / "agent-hooks" / "ticket-workflow-kit" / "ticket-rules.py").exists()
+    assert (home / "agent-hooks" / "ticket-run" / "ticket-rules.py").exists()
     cfg = (home / "config.yaml").read_text()
     assert "ticket-rules.py" in cfg and "tests-not-committed.py" in cfg
     assert (home / "skills" / "vdd-workflow" / "SKILL.md").exists()
@@ -107,12 +107,12 @@ def test_IT05_flags_passthrough_profile_and_uninstall(tmp_path):
                   tmp_path / "t")
     assert rc == 0, out
     prof = base / "profiles" / "try1"
-    assert (prof / "config.yaml").read_text().count("ticket-workflow-kit") >= 2
-    assert (prof / "agent-hooks" / "ticket-workflow-kit" / "ticket-rules.py").exists()
+    assert (prof / "config.yaml").read_text().count("ticket-run") >= 2
+    assert (prof / "agent-hooks" / "ticket-run" / "ticket-rules.py").exists()
     rc, out = run(["--url", f"file://{tgz}", "--home", str(base), "--profile", "try1", "--uninstall"],
                   tmp_path / "t")
     assert rc == 0, out
-    assert not (prof / "agent-hooks" / "ticket-workflow-kit").exists()
+    assert not (prof / "agent-hooks" / "ticket-run").exists()
 
 
 def test_IT06_no_git_dependency():

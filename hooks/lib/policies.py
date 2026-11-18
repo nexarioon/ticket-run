@@ -1,7 +1,7 @@
 """Tiny policy loader: flat YAML subset (key: value, key: [a, b]) — stdlib only.
 
-Search order: $TICKET_POLICY, <cwd>/.ticket-workflow.yaml,
-~/.hermes/ticket-workflow.yaml, then the kit default at policy/default.yaml.
+Search order: $TICKET_POLICY, <cwd>/.ticket-run.yaml,
+~/.hermes/ticket-run.yaml, then the kit default at policy/default.yaml.
 First file that exists wins; a missing key falls back to the default below.
 """
 
@@ -52,8 +52,8 @@ def load(cwd: str = ".") -> Dict[str, Any]:
     env = os.environ.get("TICKET_POLICY")
     if env:
         candidates.append(env)
-    candidates.append(os.path.join(cwd or ".", ".ticket-workflow.yaml"))
-    candidates.append(os.path.expanduser("~/.hermes/ticket-workflow.yaml"))
+    candidates.append(os.path.join(cwd or ".", ".ticket-run.yaml"))
+    candidates.append(os.path.expanduser("~/.hermes/ticket-run.yaml"))
     candidates.append(_kit_default_path())
     merged = dict(DEFAULTS)
     for path in candidates:

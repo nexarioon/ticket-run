@@ -1,4 +1,4 @@
-# ticket-workflow-kit
+# ticket-run
 
 A portable ticket discipline for coding agents: **plan first, test plan before code,
 self-verify on the real surface, revise until green — never ship on a claim.**
@@ -26,8 +26,8 @@ Two shell hooks keep it honest when the agent forgets:
 ## Quickstart (Hermes)
 
 ```bash
-git clone https://github.com/<you>/ticket-workflow-kit
-cd ticket-workflow-kit
+git clone https://github.com/<you>/ticket-run
+cd ticket-run
 ./install.sh --yes          # copies skills + hooks, wires config.yaml
 hermes hooks doctor          # both hooks must report healthy + allowlisted
 hermes hooks test pre_llm_call --payload-file fixtures/hook_payloads/top_level_msg.json
@@ -37,7 +37,7 @@ hermes hooks test pre_llm_call --payload-file fixtures/hook_payloads/top_level_m
 Or one line, no git and no npm (see `docs/install-anywhere.md`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-workflow-kit/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-run/main/bootstrap.sh | bash
 ```
 
 Then just send a ticket. The pipeline arrives on its own.
@@ -68,11 +68,13 @@ Set it per repo in `policy/*.yaml`. The commit guard hook reads the same allowli
 
 ## Status
 
-**0.3.0 — feature-complete beta, installable in one line.** Skills, both hooks,
-the installer (`--dry-run`, `--uninstall`, `--profile`), policy presets, a
-39-test suite, CI (tests 3.11/3.12, hygiene, frontmatter, bootstrap), and the
-one-line `bootstrap.sh` channel are in. Remaining before 1.0.0: one live ticket
-through the full pipeline. Do not advertise this repo until the `1.0.0` tag.
+**0.4.0 — renamed to `ticket-run`, license removed.** Skills, both hooks, the
+installer (`--dry-run`, `--uninstall`, `--profile`), policy presets, a 39-test
+suite, CI (tests 3.11/3.12, hygiene, frontmatter, bootstrap), and the one-line
+`bootstrap.sh` channel are in. The 0.3.0 tag still exists under the old repo
+name in the history; reinstalling from 0.4.0 is the supported path because the
+hook directory name changed. Remaining before 1.0.0: one live ticket through
+the full pipeline. Do not advertise this repo until the `1.0.0` tag.
 
 ## Compatibility
 
@@ -82,4 +84,7 @@ Claude Code / Cursor / Codex mapping and what the hooks translate to there.
 
 ## License
 
-MIT — see `LICENSE`. The workflow is authored by Fendi Permadi.
+No open-source license is granted: the contents are © 2026 Fendi Permadi, all
+rights reserved. Installing directly from this repository works; copying,
+modifying, or redistributing the contents needs written permission from the
+author.

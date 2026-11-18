@@ -99,7 +99,7 @@ def add_entries(config_path, hookdir, dry_run=False):
         print("dry-run: would write", len(lines), "lines to", config_path)
         return 0
     save(config_path, lines)
-    stamp_dir = os.path.join(os.path.dirname(config_path), "ticket-workflow")
+    stamp_dir = os.path.join(os.path.dirname(config_path), "ticket-run")
     os.makedirs(stamp_dir, exist_ok=True)
     with open(os.path.join(stamp_dir, ".install-stamp.json"), "w", encoding="utf-8") as fh:
         json.dump({"backup": backup, "hookdir": hookdir,

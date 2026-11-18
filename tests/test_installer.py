@@ -43,15 +43,15 @@ def test_IT19_fresh_home_full_install(tmp_path):
     cfg = home / "config.yaml"
     assert cfg.exists()
     text = cfg.read_text()
-    assert "ticket-workflow-kit/ticket-rules.py" in text
-    assert "ticket-workflow-kit/tests-not-committed.py" in text
+    assert "ticket-run/ticket-rules.py" in text
+    assert "ticket-run/tests-not-committed.py" in text
     assert "matcher: terminal" in text
-    hook = home / "agent-hooks" / "ticket-workflow-kit" / "ticket-rules.py"
+    hook = home / "agent-hooks" / "ticket-run" / "ticket-rules.py"
     assert hook.exists() and os.stat(hook).st_mode & stat.S_IXUSR
     assert (home / "skills" / "vdd-workflow" / "SKILL.md").exists()
-    assert (home / "ticket-workflow" / "default.yaml").exists()
-    assert (home / "ticket-workflow" / ".install-stamp.json").exists()
-    stamps = json.loads((home / "ticket-workflow" / ".install-stamp.json").read_text())
+    assert (home / "ticket-run" / "default.yaml").exists()
+    assert (home / "ticket-run" / ".install-stamp.json").exists()
+    stamps = json.loads((home / "ticket-run" / ".install-stamp.json").read_text())
     assert stamps["backup"] is None  # fresh config, nothing to back up
     assert "consent" in out.lower()
 
@@ -64,7 +64,7 @@ def test_IT19_existing_hooks_merge_keeps_user_entries(tmp_path):
     run(home, "--yes")
     text = (home / "config.yaml").read_text()
     assert before_user_line in text                       # user entry survived
-    assert text.count("ticket-workflow-kit/ticket-rules.py") == 1
+    assert text.count("ticket-run/ticket-rules.py") == 1
     assert "matcher: terminal" in text                    # merged alongside, not replaced
     bak = list(home.glob("config.yaml.bak-ticketworkflow-*"))
     assert len(bak) == 1                                  # backup of the pre-install file
@@ -86,7 +86,7 @@ def test_uninstall_restores_config_byte_exact(tmp_path):
     run(home, "--yes")
     run(home, "--uninstall")
     assert (home / "config.yaml").read_text() == original  # E2E-04 predicate
-    assert not (home / "agent-hooks" / "ticket-workflow-kit").exists()
+    assert not (home / "agent-hooks" / "ticket-run").exists()
     assert (home / "skills" / "vdd-workflow" / "SKILL.md").exists()  # skills stay
 
 
@@ -95,9 +95,9 @@ def test_uninstall_fresh_home_leaves_no_dangling_hooks_key(tmp_path):
     run(home, "--yes")
     run(home, "--uninstall")
     text = (home / "config.yaml").read_text()
-    assert "ticket-workflow-kit" not in text
+    assert "ticket-run" not in text
     assert "hooks:" not in text
-    assert not (home / "agent-hooks" / "ticket-workflow-kit").exists()
+    assert not (home / "agent-hooks" / "ticket-run").exists()
 
 
 def test_dry_run_writes_nothing(tmp_path):

@@ -48,5 +48,5 @@ the agent forgets any single one of them.
 
 `policy/default.yaml` and its overrides control language, the skill list the
 injection names, retention, and the commit-guard allowlist. Search order:
-`$TICKET_POLICY` → `<repo>/.ticket-workflow.yaml` → `~/.hermes/ticket-workflow.yaml`
+`$TICKET_POLICY` → `<repo>/.ticket-run.yaml` → `~/.hermes/ticket-run.yaml`
 → the bundled default. See `writing-a-policy.md`.

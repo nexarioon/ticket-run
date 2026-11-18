@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ticket-workflow-kit installer: skills + hooks + policy + config wiring.
+# ticket-run installer: skills + hooks + policy + config wiring.
 # Bash + python3 only, no network. --uninstall restores the pre-install config.
 set -euo pipefail
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -25,8 +25,8 @@ while [[ $# -gt 0 ]]; do case "$1" in
 esac; done
 BASE="${HOME_ARG:-${HERMES_HOME:-$HOME/.hermes}}"
 if [[ -n "$PROFILE" ]]; then ROOT="$BASE/profiles/$PROFILE"; else ROOT="$BASE"; fi
-HOOKDIR="$ROOT/agent-hooks/ticket-workflow-kit"
-STAMP="$ROOT/ticket-workflow/.install-stamp.json"
+HOOKDIR="$ROOT/agent-hooks/ticket-run"
+STAMP="$ROOT/ticket-run/.install-stamp.json"
 CONFIG="$ROOT/config.yaml"
 
 if [[ "$UNINSTALL" == yes ]]; then
@@ -34,8 +34,8 @@ if [[ "$UNINSTALL" == yes ]]; then
   python3 "$SRC/install/patch_config.py" "$CONFIG" --remove $([[ "$DRY" == yes ]] && echo --dry-run)
   if [[ "$DRY" != yes ]]; then
     rm -rf "$HOOKDIR"
-    rm -f "$STAMP" "$ROOT/ticket-workflow/default.yaml" "$ROOT/ticket-workflow/profiles.example.yaml" "$ROOT/ticket-workflow/lang_en.yaml" "$ROOT/ticket-workflow/lang_id.yaml"
-    rmdir "$ROOT/ticket-workflow" 2>/dev/null || true
+    rm -f "$STAMP" "$ROOT/ticket-run/default.yaml" "$ROOT/ticket-run/profiles.example.yaml" "$ROOT/ticket-run/lang_en.yaml" "$ROOT/ticket-run/lang_id.yaml"
+    rmdir "$ROOT/ticket-run" 2>/dev/null || true
     echo "hooks and config entries removed; skills left in place (delete $ROOT/skills manually if you want)"
   fi
   exit 0
@@ -44,21 +44,21 @@ fi
 echo "root   : $ROOT"
 echo "hooks  : $HOOKDIR"
 if [[ "$DRY" == yes ]]; then
-  echo "dry-run: would copy skills/, hooks/ (as agent-hooks/ticket-workflow-kit/), policy/, then wire $CONFIG"
+  echo "dry-run: would copy skills/, hooks/ (as agent-hooks/ticket-run/), policy/, then wire $CONFIG"
   python3 "$SRC/install/patch_config.py" "$CONFIG" --add --hookdir "$HOOKDIR" --dry-run
   exit 0
 fi
-mkdir -p "$ROOT/skills" "$ROOT/agent-hooks" "$ROOT/ticket-workflow"
+mkdir -p "$ROOT/skills" "$ROOT/agent-hooks" "$ROOT/ticket-run"
 cp -r "$SRC/skills/." "$ROOT/skills/"
 rm -rf "$HOOKDIR"; mkdir -p "$HOOKDIR"
 cp -r "$SRC/hooks/." "$HOOKDIR/"
 rm -rf "$HOOKDIR/lib/__pycache__"
 find "$HOOKDIR" -name "*.py" -exec chmod +x {} +
-[[ -f "$ROOT/ticket-workflow/default.yaml" ]] || cp "$SRC/policy/default.yaml" "$ROOT/ticket-workflow/default.yaml"
-cp "$SRC/policy/profiles.example.yaml" "$ROOT/ticket-workflow/profiles.example.yaml" 2>/dev/null || true
-if [[ -n "$LANG_OPT" && ! -f "$ROOT/.ticket-workflow.yaml" ]]; then
-  printf 'language: %s\n' "$LANG_OPT" > "$ROOT/ticket-workflow/lang_used.yaml"
-  printf 'NOTE: set language in %s/ticket-workflow/default.yaml or .ticket-workflow.yaml\n' "$ROOT"
+[[ -f "$ROOT/ticket-run/default.yaml" ]] || cp "$SRC/policy/default.yaml" "$ROOT/ticket-run/default.yaml"
+cp "$SRC/policy/profiles.example.yaml" "$ROOT/ticket-run/profiles.example.yaml" 2>/dev/null || true
+if [[ -n "$LANG_OPT" && ! -f "$ROOT/.ticket-run.yaml" ]]; then
+  printf 'language: %s\n' "$LANG_OPT" > "$ROOT/ticket-run/lang_used.yaml"
+  printf 'NOTE: set language in %s/ticket-run/default.yaml or .ticket-run.yaml\n' "$ROOT"
 fi
 python3 "$SRC/install/patch_config.py" "$CONFIG" --add --hookdir "$HOOKDIR"
 cat <<EOF

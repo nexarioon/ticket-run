@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ticket-workflow-kit pre_llm_call hook: keep the pipeline in force.
+"""ticket-run pre_llm_call hook: keep the pipeline in force.
 
 Reads the hook payload on stdin and prints {"context": "..."} only when the
 user's message looks like development work. Anything else is a silent no-op so

@@ -14,8 +14,8 @@ test_globs_allow: [tests/regression/**, tests/contract/**]
 Search order, first hit wins:
 
 1. `$TICKET_POLICY` (environment)
-2. `<repo>/.ticket-workflow.yaml`
-3. `~/.hermes/ticket-workflow.yaml`
+2. `<repo>/.ticket-run.yaml`
+3. `~/.hermes/ticket-run.yaml`
 4. the kit default (`policy/default.yaml`, copied on install)
 
 ## Retention modes

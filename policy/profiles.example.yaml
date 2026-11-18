@@ -1,5 +1,5 @@
 # Per-repo-class policy presets. Copy the fitting block into
-# <repo>/.ticket-workflow.yaml (or ~/.hermes/ticket-workflow.yaml for global).
+# <repo>/.ticket-run.yaml (or ~/.hermes/ticket-run.yaml for global).
 # Hook-relevant keys: language, skills, retention, test_globs_allow.
 
 profiles:
