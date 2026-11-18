@@ -62,8 +62,12 @@ Set it per repo in `policy/*.yaml`. The commit guard hook reads the same allowli
 
 ## Status
 
-**0.1.0 — work in progress.** Skills are ported and sanitized; hooks, installer, policy
-files, tests, and CI land in the next phases (see `CONTRIBUTING.md`). Do not advertise this
+**0.2.0 — feature-complete beta.** Skills, both hooks, the installer
+(`--dry-run`, `--uninstall`, `--profile`), policy with per-class presets, a
+33-test suite, and CI are in. Gates ran locally (33/33; hygiene and
+frontmatter clean; installer verified end-to-end against a throwaway
+profile). Remaining before 1.0.0: CI's first real run on GitHub (needs the
+remote), and one live ticket through the full pipeline. Do not advertise this
 repo until the `1.0.0` tag.
 
 ## Compatibility
