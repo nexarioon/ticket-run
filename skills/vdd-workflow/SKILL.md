@@ -3,6 +3,7 @@ name: vdd-workflow
 description: "Ticket to report: test plan, coding plan, build, verify."
 version: 2.2.1
 author: Fendi Permadi, Hermes Agent
+license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:

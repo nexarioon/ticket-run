@@ -68,7 +68,7 @@ Set it per repo in `policy/*.yaml`. The commit guard hook reads the same allowli
 
 ## Status
 
-**0.4.0 — renamed to `ticket-run`, license removed.** Skills, both hooks, the
+**0.4.1 — renamed to `ticket-run`; MIT license restored (0.4.0 briefly shipped without one).** Skills, both hooks, the
 installer (`--dry-run`, `--uninstall`, `--profile`), policy presets, a 39-test
 suite, CI (tests 3.11/3.12, hygiene, frontmatter, bootstrap), and the one-line
 `bootstrap.sh` channel are in. The 0.3.0 tag still exists under the old repo
@@ -84,7 +84,6 @@ Claude Code / Cursor / Codex mapping and what the hooks translate to there.
 
 ## License
 
-No open-source license is granted: the contents are © 2026 Fendi Permadi, all
-rights reserved. Installing directly from this repository works; copying,
-modifying, or redistributing the contents needs written permission from the
-author.
+MIT — see `LICENSE`. Free to use, copy, modify, and redistribute, including
+commercially; keep the copyright notice and the license text. No warranty.
+Authored by Fendi Permadi.

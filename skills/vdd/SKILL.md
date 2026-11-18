@@ -3,6 +3,7 @@ name: vdd
 description: "Validate every ticket requirement before moving phases."
 version: 1.0.0
 author: Fendi Permadi, Hermes Agent
+license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:

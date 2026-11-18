@@ -3,6 +3,7 @@ name: coding-plan
 description: "Write an approved coding plan before any implementation."
 version: 1.0.0
 author: Fendi Permadi, Hermes Agent
+license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:

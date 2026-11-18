@@ -3,6 +3,7 @@ name: clean-code
 description: "Clean-code bar: SOLID, DRY, KISS, plus review checklist."
 version: 1.0.0
 author: Fendi Permadi, Hermes Agent
+license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:

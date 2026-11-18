@@ -3,6 +3,7 @@ name: e2e-browser-test-automation
 description: Use when automating E2E tests of a live site (WDIO, BDD).
 version: 1.0.0
 author: Hermes Agent
+license: MIT
 platforms: [linux, macos, windows]
 metadata:
   hermes:
