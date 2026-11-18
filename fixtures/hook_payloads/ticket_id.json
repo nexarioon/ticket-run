@@ -1,0 +1,6 @@
+{
+ "hook_event_name": "pre_llm_call",
+ "extra": {
+  "user_message": "fix bug login endpoint di repo"
+ }
+}
