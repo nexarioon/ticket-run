@@ -11,11 +11,11 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from payload import message_text        # noqa: E402
-from detect import classify             # noqa: E402
-from policies import load               # noqa: E402
+from lib.payload import message_text    # noqa: E402
+from lib.detect import classify         # noqa: E402
+from lib.policies import load           # noqa: E402
 
 MESSAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "messages")
 
