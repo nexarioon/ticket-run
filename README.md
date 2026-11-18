@@ -34,6 +34,12 @@ hermes hooks test pre_llm_call --payload-file fixtures/hook_payloads/top_level_m
 ./install.sh --uninstall     # restores config.yaml to its pre-install hash
 ```
 
+Or one line, no git and no npm (see `docs/install-anywhere.md`):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nexarioon/ticket-workflow-kit/main/bootstrap.sh | bash
+```
+
 Then just send a ticket. The pipeline arrives on its own.
 
 ## What is inside

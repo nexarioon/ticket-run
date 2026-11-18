@@ -26,3 +26,23 @@ jobs:
         run: python tools/check_frontmatter.py
       - name: personal-token denylist gate
         run: python tools/check_hygiene.py
+
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: pack the working tree as the release tarball
+        run: tar -czf /tmp/pkg.tgz --exclude=.git --exclude=tests --exclude=tools --exclude=.github .
+      - name: bootstrap dry-run writes nothing
+        run: |
+          mkdir -p /tmp/h /tmp/t
+          before=$(find /tmp/h -type f | wc -l)
+          TMPDIR=/tmp/t bash bootstrap.sh --url file:///tmp/pkg.tgz --dry-run --home /tmp/h
+          after=$(find /tmp/h -type f | wc -l)
+          test "$before" = "$after"
+      - name: bootstrap installs into a throwaway home
+        run: |
+          mkdir -p /tmp/h2 /tmp/t2
+          TMPDIR=/tmp/t2 bash bootstrap.sh --url file:///tmp/pkg.tgz --home /tmp/h2 --yes
+          test -x /tmp/h2/agent-hooks/ticket-workflow-kit/ticket-rules.py
+          grep -q "tests-not-committed.py" /tmp/h2/config.yaml
