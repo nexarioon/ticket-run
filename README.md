@@ -86,4 +86,4 @@ Claude Code / Cursor / Codex mapping and what the hooks translate to there.
 
 MIT — see `LICENSE`. Free to use, copy, modify, and redistribute, including
 commercially; keep the copyright notice and the license text. No warranty.
-Authored by Fendi Permadi.
+Authored by nexarioon.
